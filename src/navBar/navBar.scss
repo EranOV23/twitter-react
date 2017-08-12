@@ -1,0 +1,29 @@
+@import '../../assets/css/colors.scss';
+
+.navbar{
+  background-image: linear-gradient(rgb(211,211,211) 0px, rgb(192,192,192) 100%);
+  background-repeat: repeat-x;
+  color: $navFontColor;
+  border-radius: 0px;
+
+  .nav-list{
+    display: flex;
+    align-items: center;
+    list-style: none;
+    li{
+      margin: 10px;
+
+      img{
+        max-width: 100px;
+      }
+
+      a{
+        color: $navFontColor;
+
+        &.active{
+          color: $fontColor;
+        }
+      }
+    }
+  }
+}
