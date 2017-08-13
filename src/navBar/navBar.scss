@@ -6,15 +6,19 @@
   color: $navFontColor;
   border-radius: 0px;
 
+
+
   .nav-list{
     display: flex;
     align-items: center;
     list-style: none;
+
     li{
       margin: 10px;
 
       img{
         max-width: 100px;
+        margin-right: 50px;
       }
 
       a{

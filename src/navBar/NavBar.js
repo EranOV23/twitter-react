@@ -12,7 +12,7 @@ export default class NavBar extends React.Component{
                     <li><NavLink exact to="/">Home</NavLink></li>
                     <li><NavLink to="/about" activeClassName="active">About</NavLink></li>
                     <li><NavLink to="/contact us" activeClassName="active">Contact us</NavLink></li>
-                    <li>Phone: 03-33333333</li>
+                    <li>Phone: <a href="tel:03-578-6660">03-578-6660</a></li>
                 </ul>
             </div>
         )
