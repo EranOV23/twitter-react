@@ -3,28 +3,44 @@ import React from 'react';
 import Tweet from './Tweet'
 
 import tweetsService from '../services/tweetsService'
+import NavLink from "react-router-dom/es/NavLink";
 
-export default class UserTweets extends React.Component {
+import {withRouter} from 'react-router';
+
+class UserTweets extends React.Component {
     constructor(props){
         super(props);
         this.state = {
             id: props.match.params.id,
+            count: props.match.params.count,
             tweets: []
         };
 
         if(props.match.params.id){
-            console.log(props.match.params.id);
-            tweetsService.getUserTweet(this.state.id)
-                .then( data=> this.onTweets(data) )
+            this.getUserTweet(props.match.params.id, this.state.count);
         }
     }
 
     componentWillReceiveProps({match}){
-        let userId = match.params.id;
-        if(match.params.id &&  match.params.id !== this.props.match.params.id){
-            tweetsService.getUserTweet(userId)
-                .then(data=> this.onTweets(data))
+        console.log(this.props.match.params.count);
+        console.log(match.params.count);
+        if(match.params.id && match.params.id !== this.props.match.params.id){
+            this.getUserTweet(match.params.id, 10);
+            this.setNewState(match.params.id, 10);
         }
+        else if(this.props.match.params.count !== match.params.count){
+            this.getUserTweet(match.params.id, match.params.count);
+            this.setNewState(match.params.id, match.params.count);
+        }
+    }
+
+    setNewState(id, count){
+        this.setState({id, count})
+    }
+
+    getUserTweet(userId, count){
+        tweetsService.getUserTweet(userId, count)
+            .then(data=> this.onTweets(data))
     }
 
 
@@ -39,10 +55,13 @@ export default class UserTweets extends React.Component {
 
 
     render() {
-        if(this.state.tweets.length != 0){
+        if(this.state.tweets.length !== 0){
             return (<div className="col-md-8">
                 <ul className="well">
                     {this.state.tweets.map( (tweet, i)=> this.renderTweet(tweet, i) )}
+                    <NavLink to={`/users/${this.state.id}/${parseInt(this.state.count) + 10}`}
+                             className="btn btn-primary">See More Tweets
+                    </NavLink>
                 </ul>
             </div>);
         }
@@ -54,3 +73,5 @@ export default class UserTweets extends React.Component {
 
     }
 }
+
+export default withRouter(UserTweets);

@@ -13,7 +13,9 @@ export default class UsersList extends React.Component {
             filterValue: props.filterValue,
         };
         usersService.getAllUsers()
-            .then( data => this.onUsers(data))
+            .then( data => this.onUsers(data));
+
+
     }
 
     componentWillReceiveProps(nextProps){

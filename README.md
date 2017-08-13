@@ -1,8 +1,6 @@
 # twitter-netcraft
 
-$ npm install
-then you should run webpack-dev-server & node server:
-$ npm start
-+
-cd server -> $nodemon app.js
-```
+run $ npm install
+
+Then $ npm start
+it will run webpack-dev-server and node server

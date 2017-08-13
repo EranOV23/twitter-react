@@ -11,7 +11,6 @@ class UsersService{
         return fetch(this.url).then(response => response.json());
     }
 
-
 }
 
 export default new UsersService();

@@ -6,11 +6,10 @@ class TweetsService{
         this.url = `/api/tweets`;
     }
 
-    getUserTweet(id){
+    getUserTweet(id, count){
         console.log(`requested User Tweets for userID ${id}`);
-        return fetch(this.url + `/${id}`).then(response => response.json());
+        return fetch(this.url + `/${id}/${count}`).then(response => response.json());
     }
-
 
 }
 
